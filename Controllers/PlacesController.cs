@@ -35,5 +35,12 @@ namespace Places.Controllers
             return View("Index");
         }
 
+        [Produces("text/html")]
+        [Route("/place_photos")]
+        public ViewResult PlacePhotos()
+        {
+            return View();
+        }
+
     }
 }

@@ -1,25 +1,36 @@
-<h1>Places I've Travelled</h1>
-@if (Model != null)
-{
-<ul>
-  @foreach(var place in Model)
-  {
-    @if (@place.GetState() == "")
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css" />
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Places I've Travelled</h1>
+    @if (Model != null)
     {
-      <li>@place.GetCity()</li>
+      <ul>
+      @foreach(var place in Model)
+      {
+        @if (@place.GetState() == "")
+        {
+          <li>@place.GetCity()</li>
+        }
+        else
+        {
+          <li>@place.GetCity(), @place.GetState()</li>
+        }
+      }
+      </ul>
     }
     else
     {
-      <li>@place.GetCity(), @place.GetState()</li>
+      <p>You cleared all places from your list!  Add some!</p>
     }
-  }
-</ul>
-}
-else
-{
-  <p>You cleared all places from your list!  Add some!</p>
-}
-<p><a href="/places/new">Add a Place</a></p>
-<form action="/places/delete" method="post">
-  <button type="submit" name="button">Clear all places</button>
-</form>
+    <p><a href="/places/new">Add a Place</a></p>
+    <form action="/places/delete" method="post">
+      <button type="submit" name="button">Clear all places</button>
+    </form>
+  </body>
+</html>
