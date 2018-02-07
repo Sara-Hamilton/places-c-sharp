@@ -1,5 +1,8 @@
 <h1>Places I've Travelled</h1>
 <ul>
-  <li>@Model.GetCity(), @Model.GetState()</li>
+  @foreach(var place in Model)
+  {
+    <li>@place.GetCity(), @place.GetState()</li>
+  }
 </ul>
-<a href="/new">Add a Place</a>
+<p><a href="/places/new">Add a Place</a></p>

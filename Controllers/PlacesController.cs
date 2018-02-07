@@ -1,21 +1,31 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using Places.Models;
 
 namespace Places.Controllers
 {
     public class PlacesController : Controller
     {
-        [HttpGet("/")]
+        [HttpGet("/places")]
         public ActionResult Index()
         {
-            Place newPlace = new Place(Request.Query["new-city"], Request.Query["new-state"]);
-            return View(newPlace);
+            List<Place> allPlaces = Place.GetAll();
+            return View(allPlaces);
         }
 
-        [HttpGet("/new")]
+        [HttpGet("/places/new")]
         public ActionResult CreateForm()
         {
             return View();
+        }
+
+        [HttpPost("/places")]
+        public ActionResult Create()
+        {
+            Place newPlace = new Place(Request.Form["new-city"], Request.Form["new-state"]);
+            newPlace.Save();
+            List<Place> allPlaces = Place.GetAll();
+            return View("Index", allPlaces);
         }
 
     }
