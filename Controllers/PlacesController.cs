@@ -28,5 +28,12 @@ namespace Places.Controllers
             return View("Index", allPlaces);
         }
 
+        [HttpPost("/places/delete")]
+        public ActionResult DeleteAll()
+        {
+            Place.ClearAll();
+            return View("Index");
+        }
+
     }
 }
